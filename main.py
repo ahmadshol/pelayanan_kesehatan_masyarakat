@@ -29,6 +29,9 @@ class MyScreenManager(ScreenManager):
 class RegistrationScreen(Screen):
     pass
 
+class AccountScreen(Screen):
+    pass
+
 class MyApp(App):
     def build(self):
         kv_file_path = os.path.join(os.path.dirname(__file__), 'kv','main.kv')
