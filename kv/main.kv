@@ -46,12 +46,12 @@
             ClickableImage:
                 source: 'img/location (1) 1.png' 
                 on_press:
-                    app.root.current = 'page_two' 
+                    app.root.current = 'login' 
 
             ClickableImage:
                 source: 'img/avatar.png' 
                 on_press:
-                    app.root.current = 'page_one'
+                    app.root.current = 'login'
 
                     
         # Search bar
@@ -584,6 +584,13 @@
         padding: [20, 50, 20, 20]
         spacing: 20
 
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
         Label:
             text: 'Pilih Akun'
             font_size: '24sp'
@@ -604,7 +611,7 @@
                 height: 70
                 canvas.before:
                     Color:
-                        rgba: 1, 1, 1, 1
+                        rgba: 0.9, 0.9, 0.9, 1
                     RoundedRectangle:
                         pos: self.pos
                         size: self.size
@@ -639,7 +646,7 @@
                 height: 70
                 canvas.before:
                     Color:
-                        rgba: 1, 1, 1, 1
+                        rgba: 0.9, 0.9, 0.9, 1
                     RoundedRectangle:
                         pos: self.pos
                         size: self.size
@@ -664,6 +671,33 @@
                         size_hint_y: None
                         height: self.texture_size[1]
                         color: 0 , 0 , 0 , 1
+        
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint: None, None
+            size: 280, 40
+            pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+            spacing: -120
+
+
+            # Menggambar background rounded kuning
+            canvas.before:
+                Color:
+                    rgba: 1, 0.8, 0, 1  # Warna kuning
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [20]  # Membuat sudut membulat   
+
+            Button:
+                size_hint_y: None
+                pos_hint: {'center_y': 0.5 ,'center_x': 0.5}
+                height: 50
+                text: "Logout"
+                background_normal: ''
+                background_color: 1, 1, 1, 0  # Transparan agar warna background dari canvas terlihat
+                color: 0, 0, 0, 1  # Warna teks hitam
+                on_release: app.root.current = 'page_one'
 
         BoxLayout:
             orientation: 'horizontal'
