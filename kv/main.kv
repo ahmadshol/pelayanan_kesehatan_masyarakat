@@ -1,5 +1,10 @@
 #:kivy 2.3.0
 
+<ClickableImage>:
+    allow_stretch: True
+    size_hint_x: 0.1
+    size: '30dp', '30dp'
+
 <MyScreenManager>:
     LoginScreen:
     LoginSecondScreen: 
@@ -33,23 +38,17 @@
                 text: 'Save Health'
                 font_size: '24dp'
                 bold: True
-            Image:
-                source: 'img/location (1) 1.png'
-                allow_stretch: True
-                size_hint_x: 0.1
-                size: '30dp', '30dp'  # Set size here
+            ClickableImage:
+                source: 'img/location (1) 1.png' 
+                on_press:
+                    app.root.current = 'page_two' 
 
-            BoxLayout:
-                orientation:'vertical'    
-                Image:
-                    source: 'img/avatar.png'
-                    allow_stretch: True
-                    size_hint_x: 0.1
-                    size: '30dp', '30dp'  # Set size here
+            ClickableImage:
+                source: 'img/avatar.png' 
+                on_press:
+                    app.root.current = 'page_one'
 
-                Button:
-                    on_press: callback_function    
-
+                    
         # Search bar
         BoxLayout:
             size_hint_y: None

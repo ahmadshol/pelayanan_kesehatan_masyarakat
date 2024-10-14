@@ -4,11 +4,16 @@ import os
 from kivy.lang import Builder
 from kivy.core.window import Window
 from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.behaviors import ButtonBehavior
+from kivy.uix.image import Image
 
 
 Window.size = (320, 640)
 
 # Mendefinisikan kelas untuk setiap Screen
+class ClickableImage(ButtonBehavior, Image):
+    pass
+
 class LoginScreen(Screen):
     pass
 
