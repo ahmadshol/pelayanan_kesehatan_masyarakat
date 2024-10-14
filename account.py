@@ -4,6 +4,8 @@ import os
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.core.window import Window
 from kivy.lang import Builder
+from kivy.uix.button import ButtonBehavior
+from kivy.uix.image import Image
 
 Window.size = (360, 640)
 

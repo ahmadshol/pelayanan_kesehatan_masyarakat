@@ -5,6 +5,7 @@
     size_hint_x: 0.1
     size: '30dp', '30dp'
 
+
 <MyScreenManager>:
     LoginScreen:
     LoginSecondScreen: 
@@ -12,7 +13,10 @@
     RegistrationScreen: 
     AccountScreen:
 
+<ClickableBox@ButtonBehavior+BoxLayout>:
+    on_release: app.root.current = 'home'
 
+#KVSCREEN
 <HomeApp>:
     name: 'home'
 
@@ -287,7 +291,7 @@
                         radius: [20]  # Membuat sudut membulat
 
                 Image:
-                    source: 'img/facebook.jpg'
+                    source: 'img/facebook.png'
                     size_hint: 0.5 , 0.5
                     size: 30, 30
                     pos_hint: {'center_y': 0.5 ,'center_x': 0.5}   # Memastikan ikon di tengah vertikal
@@ -320,7 +324,7 @@
                         radius: [20]  # Membuat sudut membulat
 
                 Image:
-                    source: 'img/logogoogle.jpg'
+                    source: 'img/logogoogle.png'
                     size_hint: 0.5 , 0.5
                     size: 30, 30
                     pos_hint: {'center_y': 0.5 ,'center_x': 0.5}   # Memastikan ikon di tengah vertikal
@@ -470,6 +474,7 @@
 
 
 
+
 <RegistrationScreen>:
 
     name: 'registrasi'
@@ -569,10 +574,11 @@
                 color: [0, 0, 1, 1]
 
 
+
+
+
 <AccountScreen>:
-
     name: 'login'
-
     BoxLayout:
         orientation: 'vertical'
         padding: [20, 50, 20, 20]
@@ -590,30 +596,26 @@
             spacing: 10
 
             # Card for Sholahudin
-            canvas.before:
-                Color:
-                    rgba: 1, 1, 1, 1
-                RoundedRectangle:
-                    pos: self.pos
-                    size: self.size
-                    radius: [10, 10, 10, 10]
-
-            BoxLayout:
+            ClickableBox:
                 orientation: 'horizontal'
                 spacing: 10
                 padding: 10
                 size_hint_y: None
                 height: 70
-
+                canvas.before:
+                    Color:
+                        rgba: 1, 1, 1, 1
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [10, 10, 10, 10]
                 Image:
                     source: 'img/avatar.png'
                     size_hint: None, None
                     size: 50, 50
-
                 BoxLayout:
                     orientation: 'vertical'
                     spacing: 5
-
                     Label:
                         text: 'Sholahudin'
                         font_size: '18sp'
@@ -621,7 +623,6 @@
                         size_hint_y: None
                         height: self.texture_size[1]
                         color: 0 , 0 , 0 , 1
-
                     Label:
                         text: 'udin@gmail.com'
                         font_size: '14sp'
@@ -629,22 +630,27 @@
                         height: self.texture_size[1]
                         color: 0 , 0 , 0 , 1
 
-            BoxLayout:
+            # Card for ADMIN
+            ClickableBox:
                 orientation: 'horizontal'
                 spacing: 10
                 padding: 10
                 size_hint_y: None
                 height: 70
-
+                canvas.before:
+                    Color:
+                        rgba: 1, 1, 1, 1
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [10, 10, 10, 10]
                 Image:
                     source: 'img/avatar.png'
                     size_hint: None, None
                     size: 50, 50
-
                 BoxLayout:
                     orientation: 'vertical'
                     spacing: 5
-
                     Label:
                         text: 'ADMIN'
                         font_size: '18sp'
@@ -652,7 +658,6 @@
                         size_hint_y: None
                         height: self.texture_size[1]
                         color: 0 , 0 , 0 , 1
-
                     Label:
                         text: 'Admin@gmail.com'
                         font_size: '14sp'
@@ -665,13 +670,11 @@
             spacing: 20
             size_hint_y: None
             height: 50
-
             Button:
                 text: 'Ketentuan layanan'
                 font_size: '14sp'
                 size_hint_y: None
                 height: self.texture_size[1]
-
             Button:
                 text: 'Kebijakan privasi'
                 font_size: '14sp'
