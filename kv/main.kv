@@ -570,45 +570,45 @@
 
 
 <AccountScreen>:
+
     name: 'login'
 
     BoxLayout:
         orientation: 'vertical'
-        padding: [50, 0, 50, 80]
+        padding: [20, 50, 20, 20]
         spacing: 20
 
-        canvas.before:
-            Color:
-                rgba: 1, 1, 1, 1
-            Rectangle:
-                pos: self.pos
-                size: self.size
-
-        Widget:
-            size_hint_x: 0.08
-
         Label:
-            text: 'Pilih akun'
+            text: 'Pilih Akun'
             font_size: '24sp'
             bold: True
-            color: 0 , 0 , 0 , 1
-            spacing: -120
-
+            size_hint_y: None
+            height: self.texture_size[1]
 
         BoxLayout:
             orientation: 'vertical'
             spacing: 10
 
+            # Card for Sholahudin
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [10, 10, 10, 10]
+
             BoxLayout:
                 orientation: 'horizontal'
                 spacing: 10
+                padding: 10
                 size_hint_y: None
-                height: 50
+                height: 70
 
                 Image:
                     source: 'img/avatar.png'
                     size_hint: None, None
-                    size: 40, 40
+                    size: 50, 50
 
                 BoxLayout:
                     orientation: 'vertical'
@@ -616,29 +616,30 @@
 
                     Label:
                         text: 'Sholahudin'
-                        color: 0 , 0 , 0 , 1
                         font_size: '18sp'
                         bold: True
                         size_hint_y: None
                         height: self.texture_size[1]
+                        color: 0 , 0 , 0 , 1
 
                     Label:
                         text: 'udin@gmail.com'
-                        color: 0 , 0 , 0 , 1                        
                         font_size: '14sp'
                         size_hint_y: None
                         height: self.texture_size[1]
+                        color: 0 , 0 , 0 , 1
 
             BoxLayout:
                 orientation: 'horizontal'
                 spacing: 10
+                padding: 10
                 size_hint_y: None
-                height: 50
+                height: 70
 
                 Image:
                     source: 'img/avatar.png'
                     size_hint: None, None
-                    size: 40, 40
+                    size: 50, 50
 
                 BoxLayout:
                     orientation: 'vertical'
@@ -646,18 +647,18 @@
 
                     Label:
                         text: 'ADMIN'
-                        color: 0 , 0 , 0 , 1
                         font_size: '18sp'
                         bold: True
                         size_hint_y: None
                         height: self.texture_size[1]
+                        color: 0 , 0 , 0 , 1
 
                     Label:
                         text: 'Admin@gmail.com'
-                        color: 0 , 0 , 0 , 1
                         font_size: '14sp'
                         size_hint_y: None
                         height: self.texture_size[1]
+                        color: 0 , 0 , 0 , 1
 
         BoxLayout:
             orientation: 'horizontal'

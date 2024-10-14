@@ -11,6 +11,9 @@ from kivy.uix.image import Image
 Window.size = (320, 640)
 
 # Mendefinisikan kelas untuk setiap Screen
+class BoxRounded(BoxLayout):
+    pass
+
 class ClickableImage(ButtonBehavior, Image):
     pass
 
