@@ -8,7 +8,7 @@ from kivy.lang import Builder
 from kivy.core.window import Window
 import os
 
-Window.size = (320, 640)
+Window.size = (360, 640)
 
 class RegistrationScreen(BoxLayout):
     pass
