@@ -37,8 +37,12 @@ class AccountScreen(Screen):
 
 class MyApp(App):
     def build(self):
-        kv_file_path = os.path.join(os.path.dirname(__file__), 'kv','main.kv')
-        Builder.load_file(kv_file_path)
+        # List of kv file names
+        kv_files = ['main.kv', 'home.kv','login.kv','registrasi.kv','account.kv']
+        # Load all kv files
+        for kv_file in kv_files:
+            kv_file_path = os.path.join(os.path.dirname(__file__), 'kv', kv_file)
+            Builder.load_file(kv_file_path)
         return MyScreenManager()
 
 if __name__ == '__main__':
