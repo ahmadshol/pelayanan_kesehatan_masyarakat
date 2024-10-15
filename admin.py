@@ -22,7 +22,7 @@ class ClickableImage(ButtonBehavior, Image):
 class UserApp(App):
     def build(self):
         # Ensure the path to the kv file is correct
-        kv_file_path = os.path.join(os.path.dirname(__file__), 'kv','home.kv')
+        kv_file_path = os.path.join(os.path.dirname(__file__), 'kv','admin.kv')
         Builder.load_file(kv_file_path)
         return HomeApp()
 

@@ -15,7 +15,7 @@ class RegistrationScreen(BoxLayout):
 
 class RegistrationApp(App):
     def build(self):
-        kv_file_path = os.path.join(os.path.dirname(__file__), 'kv','main.kv')
+        kv_file_path = os.path.join(os.path.dirname(__file__), 'kv','registrasi.kv')
         Builder.load_file(kv_file_path)
         return RegistrationScreen()
 

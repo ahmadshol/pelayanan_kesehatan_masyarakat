@@ -14,7 +14,7 @@ class AccountScreen(Screen):
 
 class AccountApp(App):
     def build(self):
-        kv_file_path = os.path.join(os.path.dirname(__file__), 'kv','main.kv')
+        kv_file_path = os.path.join(os.path.dirname(__file__), 'kv','account.kv')
         Builder.load_file(kv_file_path)
         return AccountScreen()
 
