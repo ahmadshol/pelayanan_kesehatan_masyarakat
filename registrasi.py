@@ -40,6 +40,7 @@ class RegistrationApp(App):
             doc_ref.set({
                 "name": name,
                 "email": email,
+                "password": password,
                 "role": role
             })
 

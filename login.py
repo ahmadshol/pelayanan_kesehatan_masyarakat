@@ -47,7 +47,7 @@ class HealthApp(App):
             if doc.exists:
                 role = doc.to_dict().get("role")
                 if role == "admin":
-                    self.root.current = 'login'  # switch to admin home
+                    self.root.current = 'admin'  # switch to admin home
                 else:
                     self.root.current = 'home'  # switch to user home
             else:

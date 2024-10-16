@@ -1,5 +1,5 @@
 <AccountScreen>:
-    name: 'login'
+    name: 'account'
     BoxLayout:
         orientation: 'vertical'
         padding: [20, 50, 20, 20]
@@ -17,10 +17,14 @@
             size_hint_y: None
             height: self.texture_size[1]
 
-        BoxLayout:
-            id: accounts_box
-            orientation: 'vertical'
-            spacing: 10
+        ScrollView:
+            BoxLayout:
+                id: accounts_box
+                orientation: 'vertical'
+                spacing: 10
+                padding: [10, 10, 10, 10]
+                size_hint_y: None
+                height: self.minimum_height
 
         BoxLayout:
             orientation: 'horizontal'
@@ -60,3 +64,16 @@
                 font_size: '14sp'
                 size_hint_y: None
                 height: self.texture_size[1]
+
+<HomeScreen>:
+    name: 'home'
+    BoxLayout:
+        orientation: 'vertical'
+        padding: [20, 50, 20, 20]
+        Label:
+            id: welcome_label
+            text: "Welcome"
+            font_size: '24sp'
+            bold: True
+            size_hint_y: None
+            height: self.texture_size[1]
