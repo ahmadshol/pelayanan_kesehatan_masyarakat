@@ -142,92 +142,73 @@
 
 <LoginSecondScreen>:
     name: 'page_two'
-
     BoxLayout:
         orientation: 'vertical'
         padding: [50, 0, 50, 80]
         spacing: 20
-
         canvas.before:
             Color:
                 rgba: 1, 1, 1, 1
             Rectangle:
                 pos: self.pos
                 size: self.size
-
         Widget:
             size_hint_x: 0.08
-
         Label:
             text: 'Login'
             font_size: '24sp'
             bold: True
             color: 0 , 0 , 0 , 1
-
         TextInput:
+            id: email
             hint_text: 'Email'
             size_hint_y: None
             background_color: 1, 1, 1, 0
             height: 40
-
         TextInput:
+            id: password
             hint_text: 'Password'
             password: True
             size_hint_y: None
             background_color: 1, 1, 1, 0
             height: 40
-
         BoxLayout:
             orientation: 'horizontal'
             size_hint: None, None
             size: 280, 40
             pos_hint: {'center_x': 0.5, 'center_y': 0.5}
             spacing: -120
-
-
-            # Menggambar background rounded kuning
             canvas.before:
                 Color:
-                    rgba: 1, 0.8, 0, 1  # Warna kuning
+                    rgba: 1, 0.8, 0, 1
                 RoundedRectangle:
                     pos: self.pos
                     size: self.size
-                    radius: [20]  # Membuat sudut membulat   
-
+                    radius: [20]
             Button:
                 size_hint_y: None
-                pos_hint: {'center_y': 0.5 ,'center_x': 0.5}
+                pos_hint: {'center_y': 0.5, 'center_x': 0.5}
                 height: 50
                 text: "Login"
                 background_normal: ''
-                background_color: 1, 1, 1, 0  # Transparan agar warna background dari canvas terlihat
-                color: 0, 0, 0, 1  # Warna teks hitam
-                on_release: app.root.current = 'home'
-
+                background_color: 1, 1, 1, 0
+                color: 0, 0, 0, 1
+                on_release: app.login(email.text, password.text)
         BoxLayout:
-
             orientation: 'horizontal'
             size_hint_y: None
             height: 30
-            pos_hint: {'center_x': 0.2,'center_y': 0.2}
-            
-
+            pos_hint: {'center_x': 0.2, 'center_y': 0.2}
             CheckBox:
                 color: [0, 0, 0, 1]
             Label:
                 color: [0, 0, 0, 1]
                 font_size: 11
                 text: 'ingat saya'
-
         BoxLayout:
-
             orientation: 'horizontal'
             size_hint_y: None
             height: 30
-
             Label:
-
                 text: 'Ketentuan layanan dan Kebijakan privasi'
                 color: [0, 0, 1, 1]
-
-

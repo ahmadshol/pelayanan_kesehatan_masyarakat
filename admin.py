@@ -19,7 +19,7 @@ class HomeApp(Screen):
 class ClickableImage(ButtonBehavior, Image):
     pass
 
-class UserApp(App):
+class AdminApp(App):
     def build(self):
         # Ensure the path to the kv file is correct
         kv_file_path = os.path.join(os.path.dirname(__file__), 'kv','admin.kv')
@@ -27,4 +27,4 @@ class UserApp(App):
         return HomeApp()
 
 if __name__ == '__main__':
-    UserApp().run()
+    AdminApp().run()

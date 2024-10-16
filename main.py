@@ -6,7 +6,14 @@ from kivy.core.window import Window
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.behaviors import ButtonBehavior
 from kivy.uix.image import Image
+from kivy.uix.popup import Popup
+from kivy.uix.label import Label
+import firebase_admin
+from firebase_admin import credentials, firestore
 
+cred = credentials.Certificate("pelayanan.json")
+firebase_admin.initialize_app(cred)
+db = firestore.client()
 
 Window.size = (320, 640)
 
@@ -44,6 +51,42 @@ class MyApp(App):
             kv_file_path = os.path.join(os.path.dirname(__file__), 'kv', kv_file)
             Builder.load_file(kv_file_path)
         return MyScreenManager()
+    
+    def login(self, email, password):
+        # Save to Firestore
+        doc_ref = db.collection("users").document(email)
+        doc_ref.set({
+            "email": email,
+            "password": password
+        })
+
+        # Check role
+        doc = doc_ref.get()
+        if doc.exists:
+            role = doc.to_dict().get("role")
+            if role == "admin":
+                self.root.current = 'page_one'  # switch to admin home
+            else:
+                self.root.current = 'home'  # switch to user home
+        else:
+            popup = Popup(title='Error',
+                          content=Label(text='Invalid login credentials'),
+                          size_hint=(None, None), size=(400, 200))
+            popup.open()
+            
+    def register(self, name, email, password, role):
+        # Save to Firestore
+        doc_ref = db.collection("users").document(email)
+        doc_ref.set({
+            "name": name,
+            "email": email,
+            "password": password,
+            "role": role
+        })
+        popup = Popup(title='Registration Successful',
+                      content=Label(text=f'Registration successful for {role}'),
+                      size_hint=(None, None), size=(400, 200))
+        popup.open()
 
 if __name__ == '__main__':
     MyApp().run()
