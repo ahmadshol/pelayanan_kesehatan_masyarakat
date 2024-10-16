@@ -1,1 +1,3 @@
 project_pelayanan/
+config/secrets/*
+echo "pelayanan.json" >> .gitignore
