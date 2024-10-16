@@ -676,3 +676,356 @@
                 font_size: '14sp'
                 size_hint_y: None
                 height: self.texture_size[1]
+            
+<QueueLayout>:
+    orientation: 'vertical'
+    padding: 5
+    spacing: 5
+    size_hint_y: 1
+    BoxLayout:
+        orientation: 'horizontal'
+        Image:
+            source: 'img/back1.png'
+            size_hint_x: None
+            width: 50
+        Label:
+            text: 'ANTRIAN'
+            ssize_hint: None, 1
+            height: '20dp'
+            bold: True
+            color: 1, 1, 1, 1
+            font_size: 40
+
+    # First Entry
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint_y: 1
+        height: '80dp'
+        padding: 5
+        halign: 'center'
+        valign: 'middle'
+        spacing: 5
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        CheckBox:
+            size_hint_x: None
+            width: '40dp'
+
+        BoxLayout:
+            orientation: 'vertical'
+            Label:
+                text: 'Imunisasi Pertama'
+                size_hint_y: None
+                height: '20dp'
+                bold: True
+                color: 0, 0, 0, 1
+                halign: 'left'
+                valign: 'middle'
+                text_size: self.size
+                font_size: 25
+            Label:
+                text: 'Nama: Rohmad Rafi'
+                color: 0, 0, 0, 1
+                halign: 'left'
+                valign: 'middle'
+                text_size: self.size
+            Label:
+                text: 'Tempat: Posyandu Flamboyan'
+                color: 0, 0, 0, 1
+                halign: 'left'
+                valign: 'middle'
+                text_size: self.size
+            Label:
+                text: 'Tanggal: 09 Juli 2024'
+                color: 0, 0, 0, 1
+                halign: 'left'
+                valign: 'middle'
+                text_size: self.size
+
+        Label:
+            text: 'Antrian 01'
+            size_hint_x: None
+            width: '60dp'
+            halign: 'center'
+            valign: 'middle'
+            text_size: self.size
+            color: 0, 0, 0, 1
+
+    # Second Entry
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint_y: 1
+        height: '80dp'
+        padding: 5
+        spacing: 5
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        CheckBox:
+            size_hint_x: None
+            width: '40dp'
+
+        BoxLayout:
+            orientation: 'vertical'
+            Label:
+                text: 'Imunisasi Pertama'
+                size_hint_y: None
+                height: '20dp'
+                bold: True
+                color: 0, 0, 0, 1
+                halign: 'left'
+                valign: 'middle'
+                text_size: self.size
+                font_size: 25
+            Label:
+                text: 'Nama: Rohmad Rafi'
+                color: 0, 0, 0, 1
+                halign: 'left'
+                valign: 'middle'
+                text_size: self.size
+            Label:
+                text: 'Tempat: Posyandu Flamboyan'
+                color: 0, 0, 0, 1
+                halign: 'left'
+                valign: 'middle'
+                text_size: self.size
+            Label:
+                text: 'Tanggal: 09 Juli 2024'
+                color: 0, 0, 0, 1
+                halign: 'left'
+                valign: 'middle'
+                text_size: self.size
+
+        Label:
+            text: 'Antrian 02'
+            size_hint_x: None
+            width: '60dp'
+            halign: 'center'
+            valign: 'middle'
+            text_size: self.size
+            color: 0, 0, 0, 1
+
+    # Third Entry
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint_y: 1
+        height: '80dp'
+        padding: 5
+        spacing: 5
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        CheckBox:
+            size_hint_x: None
+            width: '40dp'
+
+        BoxLayout:
+            orientation: 'vertical'
+            Label:
+                text: 'Imunisasi Pertama'
+                size_hint_y: None
+                height: '20dp'
+                bold: True
+                color: 0, 0, 0, 1
+                halign: 'left'
+                valign: 'middle'
+                text_size: self.size
+                font_size: 25
+            Label:
+                text: 'Nama: Rohmad Rafi'
+                color: 0, 0, 0, 1
+                halign: 'left'
+                valign: 'middle'
+                text_size: self.size
+            Label:
+                text: 'Tempat: Posyandu Flamboyan'
+                color: 0, 0, 0, 1
+                halign: 'left'
+                valign: 'middle'
+                text_size: self.size
+            Label:
+                text: 'Tanggal: 09 Juli 2024'
+                color: 0, 0, 0, 1
+                halign: 'left'
+                valign: 'middle'
+                text_size: self.size
+
+        Label:
+            text: 'Antrian 03'
+            size_hint_x: None
+            width: '60dp'
+            halign: 'center'
+            valign: 'middle'
+            text_size: self.size
+            color: 0, 0, 0, 1
+
+    # Empty Entry
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint_y: 1
+        height: '80dp'
+        padding: 5
+        spacing: 5
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        CheckBox:
+            size_hint_x: None
+            width: '40dp'
+
+        BoxLayout:
+            orientation: 'vertical'
+            Label:
+                text: 'Imunisasi Pertama'
+                size_hint_y: None
+                height: '20dp'
+                bold: True
+                color: 0, 0, 0, 1
+                halign: 'left'
+                valign: 'middle'
+                text_size: self.size
+                font_size: 25
+            Label:
+                text: 'Nama :'
+                color: 0, 0, 0, 1
+                halign: 'left'
+                valign: 'middle'
+                text_size: self.size
+            Label:
+                text: 'Tempat :'
+                color: 0, 0, 0, 1
+                halign: 'left'
+                valign: 'middle'
+                text_size: self.size
+            Label:
+                text: 'Tanggal :'
+                color: 0, 0, 0, 1
+                halign: 'left'
+                valign: 'middle'
+                text_size: self.size
+
+        Label:
+            text: 'Antrian'
+            size_hint_x: None
+            width: '60dp'
+            halign: 'center'
+            valign: 'middle'
+            text_size: self.size
+            color: 0, 0, 0, 1
+<DataLansiaLayout>:
+    orientation: 'vertical'
+    padding: 10
+    spacing: 10
+    size_hint_y: 1
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1  # Background color for the whole app
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    # Title
+    BoxLayout:
+        size_hint_y: None
+        height: 50
+        padding: 5
+        spacing: 10
+        size_hint_y: 1
+        canvas.before:
+            Color:
+                rgba: 0.2, 0.6, 0.86, 1  # Background color for title
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        Label:
+            text: 'Data Lansia'
+            font_size: '24sp'
+            bold: True
+            color: 1, 1, 1, 1  # White text color
+
+    # Profile section
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint_y: None
+        height: 100
+        padding: 5
+        spacing: 10
+        size_hint_y: 1
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1  # Background color for profile section
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        Image:
+            source: 'avatar.png'
+            size_hint_x: None
+            width: 100
+        Label:
+            text: 'Rohmad Rafi'
+            font_size: '18sp'
+            valign: 'middle'
+            color: 0, 0, 0, 1  # Black text color
+
+    # Data fields
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 5
+        spacing: 10
+        size_hint_y: 1
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1  # Background color for data fields section
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        
+        Label:
+            text: 'Tinggi Badan'
+            font_size: '16sp'
+            size_hint_y: None
+            color: 0, 0, 0, 1  # Black text color
+
+        Label:
+            text: 'Berat Badan'
+            font_size: '16sp'
+            color: 0, 0, 0, 1  # Black text color
+
+        Label:
+            text: 'Tekanan Darah'
+            font_size: '16sp'
+            color: 0, 0, 0, 1  # Black text color
+
+        Label:
+            text: 'Kadar gula darah'
+            font_size: '16sp'
+            color: 0, 0, 0, 1  # Black text color
+
+        Label:
+            text: 'Kolestrol'
+            font_size: '16sp'
+            color: 0, 0, 0, 1  # Black text color
+
+        Label:
+            text: 'Riwayat Penyakit'
+            font_size: '16sp'
+            color: 0, 0, 0, 1  # Black text color
+
+
