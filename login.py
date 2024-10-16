@@ -7,7 +7,7 @@ from kivy.uix.label import Label
 from kivy.lang import Builder
 import os
 import firebase_admin
-from firebase_admin import credentials, firestore
+from firebase_admin import credentials, firestore, auth
 
 # Initialize Firebase
 cred = credentials.Certificate("pelayanan.json")
@@ -34,24 +34,35 @@ class HealthApp(App):
         return MyScreenManager()
 
     def login(self, email, password):
-        # Save to Firestore
-        doc_ref = db.collection("users").document(email)
-        doc_ref.set({
-            "email": email,
-            "password": password
-        })
+        try:
+            # Attempt to retrieve user from Firebase Authentication
+            user = auth.get_user_by_email(email)
 
-        # Check role
-        doc = doc_ref.get()
-        if doc.exists:
-            role = doc.to_dict().get("role")
-            if role == "admin":
-                self.root.current = 'admin_home'  # switch to admin home
+            # Here you should authenticate the user with the password (handled by Firebase Client SDK)
+            # This example assumes the user already exists and has been authenticated
+
+            # Fetch the user's role from Firestore
+            doc_ref = db.collection("users").document(user.uid)
+            doc = doc_ref.get()
+            if doc.exists:
+                role = doc.to_dict().get("role")
+                if role == "admin":
+                    self.root.current = 'login'  # switch to admin home
+                else:
+                    self.root.current = 'home'  # switch to user home
             else:
-                self.root.current = 'user_home'  # switch to user home
-        else:
+                popup = Popup(title='Error',
+                              content=Label(text='User role not found'),
+                              size_hint=(None, None), size=(400, 200))
+                popup.open()
+        except firebase_admin.exceptions.FirebaseError as e:
             popup = Popup(title='Error',
-                          content=Label(text='Invalid login credentials'),
+                          content=Label(text=f'Authentication failed: {e}'),
+                          size_hint=(None, None), size=(400, 200))
+            popup.open()
+        except Exception as e:
+            popup = Popup(title='Error',
+                          content=Label(text=str(e)),
                           size_hint=(None, None), size=(400, 200))
             popup.open()
 

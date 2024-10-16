@@ -4,14 +4,12 @@
         orientation: 'vertical'
         padding: [20, 50, 20, 20]
         spacing: 20
-
         canvas.before:
             Color:
                 rgba: 1, 1, 1, 1
             Rectangle:
                 pos: self.pos
                 size: self.size
-
         Label:
             text: 'Pilih Akun'
             font_size: '24sp'
@@ -20,99 +18,26 @@
             height: self.texture_size[1]
 
         BoxLayout:
+            id: accounts_box
             orientation: 'vertical'
             spacing: 10
 
-            # Card for Sholahudin
-            ClickableBox:
-                orientation: 'horizontal'
-                spacing: 10
-                padding: 10
-                size_hint_y: None
-                height: 70
-                canvas.before:
-                    Color:
-                        rgba: 0.9, 0.9, 0.9, 1
-                    RoundedRectangle:
-                        pos: self.pos
-                        size: self.size
-                        radius: [10, 10, 10, 10]
-                Image:
-                    source: 'img/avatar.png'
-                    size_hint: None, None
-                    size: 50, 50
-                BoxLayout:
-                    orientation: 'vertical'
-                    spacing: 5
-                    Label:
-                        text: 'Sholahudin'
-                        font_size: '18sp'
-                        bold: True
-                        size_hint_y: None
-                        height: self.texture_size[1]
-                        color: 0 , 0 , 0 , 1
-                    Label:
-                        text: 'udin@gmail.com'
-                        font_size: '14sp'
-                        size_hint_y: None
-                        height: self.texture_size[1]
-                        color: 0 , 0 , 0 , 1
-
-            # Card for ADMIN
-            ClickableBox:
-                orientation: 'horizontal'
-                spacing: 10
-                padding: 10
-                size_hint_y: None
-                height: 70
-                canvas.before:
-                    Color:
-                        rgba: 0.9, 0.9, 0.9, 1
-                    RoundedRectangle:
-                        pos: self.pos
-                        size: self.size
-                        radius: [10, 10, 10, 10]
-                Image:
-                    source: 'img/avatar.png'
-                    size_hint: None, None
-                    size: 50, 50
-                BoxLayout:
-                    orientation: 'vertical'
-                    spacing: 5
-                    Label:
-                        text: 'ADMIN'
-                        font_size: '18sp'
-                        bold: True
-                        size_hint_y: None
-                        height: self.texture_size[1]
-                        color: 0 , 0 , 0 , 1
-                    Label:
-                        text: 'Admin@gmail.com'
-                        font_size: '14sp'
-                        size_hint_y: None
-                        height: self.texture_size[1]
-                        color: 0 , 0 , 0 , 1
-        
         BoxLayout:
             orientation: 'horizontal'
             size_hint: None, None
             size: 280, 40
             pos_hint: {'center_x': 0.5, 'center_y': 0.5}
             spacing: -120
-
-
-            # Menggambar background rounded kuning
             canvas.before:
                 Color:
                     rgba: 1, 0.8, 0, 1  # Warna kuning
                 RoundedRectangle:
                     pos: self.pos
                     size: self.size
-                    radius: [20]  # Membuat sudut membulat   
-
+                    radius: [20]  # Membuat sudut membulat
             Button:
                 size_hint_y: None
-                pos_hint: {'center_y': 0.5 ,'center_x': 0.5}
+                pos_hint: {'center_y': 0.5, 'center_x': 0.5}
                 height: 50
                 text: "Logout"
                 background_normal: ''
@@ -121,7 +46,6 @@
                 on_release: app.root.current = 'page_one'
 
         BoxLayout:
-
             orientation: 'horizontal'
             spacing: 20
             size_hint_y: None
@@ -132,7 +56,6 @@
                 size_hint_y: None
                 height: self.texture_size[1]
             Button:
-
                 text: 'Kebijakan privasi'
                 font_size: '14sp'
                 size_hint_y: None
