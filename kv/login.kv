@@ -61,7 +61,7 @@
                     background_normal: ''
                     background_color: 1, 1, 1, 0  # Transparan agar warna background dari canvas terlihat
                     color: 0, 0, 0, 1  # Warna teks hitam
-                    on_release: app.root.current = 'account'
+                    on_release: app.root.current = 'page_two'
 
             BoxLayout:
                 orientation: 'horizontal'
@@ -94,7 +94,7 @@
                     background_normal: ''
                     background_color: 1, 1, 1, 0  # Transparan agar warna background dari canvas terlihat
                     color: 0, 0, 0, 1  # Warna teks hitam
-                    on_release: app.root.current = 'page_two'
+                    on_release: app.root.current = 'account'
 
         Button:
             text: "Registrasi / Membuat Akun"
@@ -113,7 +113,7 @@
             background_normal: ''
             background_color: (0.5, 0.5, 0.5, 1)
             color: (0, 0, 0, 1)
-            on_press: root.guest_login()
+            on_press: app.root.current = 'home'
 
         Widget:
             size_hint_x: 0.08
@@ -141,6 +141,7 @@
 
 
 <LoginSecondScreen>:
+
     name: 'page_two'
     BoxLayout:
         orientation: 'vertical'
@@ -154,6 +155,7 @@
                 size: self.size
         Widget:
             size_hint_x: 0.08
+
         Label:
             text: 'Login'
             font_size: '24sp'
@@ -205,6 +207,17 @@
                 color: [0, 0, 0, 1]
                 font_size: 11
                 text: 'ingat saya'
+
+        Button:
+            text: "kembali"
+            size_hint_y: None
+            height: 30
+            background_normal: ''
+            background_color: (0, 0, 0, 0)
+            color: (0, 0, 1, 1)
+            italic: True
+            on_press: app.root.current = 'page_one'
+
         BoxLayout:
             orientation: 'horizontal'
             size_hint_y: None

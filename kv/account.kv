@@ -10,12 +10,12 @@
             Rectangle:
                 pos: self.pos
                 size: self.size
+
         Label:
             text: 'Pilih Akun'
             font_size: '24sp'
             bold: True
-            size_hint_y: None
-            height: self.texture_size[1]
+            color: 0 , 0 , 0 , 1
 
         ScrollView:
             BoxLayout:
@@ -65,15 +65,3 @@
                 size_hint_y: None
                 height: self.texture_size[1]
 
-<HomeScreen>:
-    name: 'home'
-    BoxLayout:
-        orientation: 'vertical'
-        padding: [20, 50, 20, 20]
-        Label:
-            id: welcome_label
-            text: "Welcome"
-            font_size: '24sp'
-            bold: True
-            size_hint_y: None
-            height: self.texture_size[1]

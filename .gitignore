@@ -1,3 +1,4 @@
 project_pelayanan/
 config/secrets/*
 echo "pelayanan.json" >> .gitignore
+node_modules

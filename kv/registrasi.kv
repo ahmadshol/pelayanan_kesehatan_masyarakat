@@ -12,6 +12,7 @@
                 size: self.size
         Widget:
             size_hint_x: 0.08
+
         Label:
             text: 'Registrasi'
             font_size: '24sp'
@@ -76,6 +77,17 @@
                 color: [0, 0, 0, 1]
                 font_size: 11
                 text: 'Dengan mendaftar, anda setuju dengan'
+
+        Button:
+            text: "kembali"
+            size_hint_y: None
+            height: 30
+            background_normal: ''
+            background_color: (0, 0, 0, 0)
+            color: (0, 0, 1, 1)
+            italic: True
+            on_press: app.root.current = 'page_one'
+
         BoxLayout:
             orientation: 'horizontal'
             size_hint_y: None

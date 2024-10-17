@@ -6,13 +6,21 @@ from kivy.core.window import Window
 from kivy.uix.label import Label
 from kivy.lang import Builder
 import os
-import firebase_admin
-from firebase_admin import credentials, firestore, auth
+import pyrebase
 
-# Initialize Firebase
-cred = credentials.Certificate("pelayanan.json")
-firebase_admin.initialize_app(cred)
-db = firestore.client()
+firebaseConfig = {
+    "apiKey": "AIzaSyBtXAFglMuV2PN2hAS6mEYPyFU6H_qSBEQ",
+    "authDomain": "kesehatan-masyarakat.firebaseapp.com",
+    "databaseURL": "https://kesehatan-masyarakat-default-rtdb.firebaseio.com",
+    "projectId": "kesehatan-masyarakat", 
+    "storageBucket": "kesehatan-masyarakat.appspot.com",
+    "messagingSenderId": "366757069189",
+    "appId": "1:366757069189:web:44b18a06d3b38b862584ec"
+}
+
+firebase = pyrebase.initialize_app(firebaseConfig)
+auth = firebase.auth()
+db = firebase.database()
 
 Window.size = (360, 640)
 
@@ -22,7 +30,7 @@ class MyScreenManager(ScreenManager):
 class LoginScreen(Screen):
     pass
 
-class SecondScreen(Screen):
+class LoginSecondScreen(Screen):
     pass
 
 class HealthApp(App):
@@ -35,35 +43,22 @@ class HealthApp(App):
 
     def login(self, email, password):
         try:
-            # Attempt to retrieve user from Firebase Authentication
-            user = auth.get_user_by_email(email)
+            # Firebase login
+            user = auth.sign_in_with_email_and_password(email, password)
 
-            # Here you should authenticate the user with the password (handled by Firebase Client SDK)
-            # This example assumes the user already exists and has been authenticated
+            # Get user token
+            id_token = user['idToken']
 
-            # Fetch the user's role from Firestore
-            doc_ref = db.collection("users").document(user.uid)
-            doc = doc_ref.get()
-            if doc.exists:
-                role = doc.to_dict().get("role")
-                if role == "admin":
-                    self.root.current = 'admin'  # switch to admin home
-                else:
-                    self.root.current = 'home'  # switch to user home
+            # Retrieve user role from database
+            user_data = db.child("users").child(user['localId']).get(token=id_token).val()
+            role = user_data.get("role", "")
+
+            if role == "admin":
+                self.root.current = 'admin'  # Switch to admin screen
             else:
-                popup = Popup(title='Error',
-                              content=Label(text='User role not found'),
-                              size_hint=(None, None), size=(400, 200))
-                popup.open()
-        except firebase_admin.exceptions.FirebaseError as e:
-            popup = Popup(title='Error',
-                          content=Label(text=f'Authentication failed: {e}'),
-                          size_hint=(None, None), size=(400, 200))
-            popup.open()
+                self.root.current = 'home'  # Switch to home screen
         except Exception as e:
-            popup = Popup(title='Error',
-                          content=Label(text=str(e)),
-                          size_hint=(None, None), size=(400, 200))
+            popup = Popup(title='Error', content=Label(text=str(e)), size_hint=(None, None), size=(400, 200))
             popup.open()
 
 if __name__ == '__main__':

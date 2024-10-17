@@ -8,15 +8,25 @@ from kivy.uix.button import ButtonBehavior
 from kivy.uix.image import Image
 from kivy.uix.label import Label
 from kivy.graphics import Color, RoundedRectangle
-import firebase_admin
-from firebase_admin import credentials, firestore
+import pyrebase
+from login import LoginSecondScreen
 
 Window.size = (360, 640)
 
-# Initialize Firebase
-cred = credentials.Certificate("pelayanan.json")
-firebase_admin.initialize_app(cred)
-db = firestore.client()
+# Firebase configuration
+firebaseConfig = {
+    "apiKey": "AIzaSyBtXAFglMuV2PN2hAS6mEYPyFU6H_qSBEQ",
+    "authDomain": "kesehatan-masyarakat.firebaseapp.com",
+    "databaseURL": "https://kesehatan-masyarakat-default-rtdb.firebaseio.com",
+    "projectId": "kesehatan-masyarakat", 
+    "storageBucket": "kesehatan-masyarakat.appspot.com",
+    "messagingSenderId": "366757069189",
+    "appId": "1:366757069189:web:44b18a06d3b38b862584ec"
+}
+
+firebase = pyrebase.initialize_app(firebaseConfig)
+auth = firebase.auth()
+db = firebase.database()
 
 class ClickableBox(ButtonBehavior, BoxLayout):
     def __init__(self, user_data, **kwargs):
@@ -32,36 +42,53 @@ class ClickableBox(ButtonBehavior, BoxLayout):
 
 class AccountScreen(Screen):
     def on_pre_enter(self):
-        self.ids.accounts_box.clear_widgets()
-        users_ref = db.collection("users")
-        docs = users_ref.stream()
-        for doc in docs:
-            user_data = doc.to_dict()
-            clickable_box = ClickableBox(user_data=user_data)
-            clickable_box.orientation = 'horizontal'
-            clickable_box.spacing = 10
-            clickable_box.padding = 10
-            clickable_box.size_hint_y = None
-            clickable_box.height = 70
-            clickable_box.canvas.before.clear()
-            with clickable_box.canvas.before:
-                Color(rgba=(0.9, 0.9, 0.9, 1))
-                RoundedRectangle(size=clickable_box.size, pos=clickable_box.pos, radius=[10, 10, 10, 10])
+        # Menggunakan idToken untuk autentikasi
+        if hasattr(self.manager.get_screen('page_two'), 'user'):  # Pastikan ini adalah screen page_two
+            user = self.manager.get_screen('page_two').user  # Ambil dari screen login
+            id_token = user['idToken']
 
-            image = Image(source='img/avatar.png', size_hint=(None, None), size=(50, 50))
-            clickable_box.add_widget(image)
+            # Ambil referensi pengguna dari Firebase Realtime Database
+            users_ref = db.child("users").get(token=id_token)
 
-            box = BoxLayout(orientation='vertical', spacing=5)
-            # Ensure default values if 'name' or 'email' is missing
-            name_label = Label(text=user_data.get('name', 'No Name'), font_size='18sp', bold=True, size_hint_y=None, height=30, color=(0, 0, 0, 1))
-            email_label = Label(text=user_data.get('email', 'No Email'), font_size='14sp', size_hint_y=None, height=30, color=(0, 0, 0, 1))
-            box.add_widget(name_label)
-            box.add_widget(email_label)
-            clickable_box.add_widget(box)
+            # Clear previous widgets
+            self.ids.accounts_box.clear_widgets()  # Bersihkan tampilan sebelumnya
 
-            self.ids.accounts_box.add_widget(clickable_box)
+            # Cek apakah ada data yang diambil
+            if users_ref.each():  # Cek apakah ada data
+                for doc in users_ref.each():
+                    user_data = doc.val()
+                    clickable_box = ClickableBox(user_data=user_data)
+                    clickable_box.orientation = 'horizontal'
+                    clickable_box.spacing = 10
+                    clickable_box.padding = 10
+                    clickable_box.size_hint_y = None
+                    clickable_box.height = 70
+
+                    with clickable_box.canvas.before:
+                        Color(rgba=(0.9, 0.9, 0.9, 1))
+                        RoundedRectangle(size=clickable_box.size, pos=clickable_box.pos, radius=[10, 10, 10, 10])
+
+                    image = Image(source='img/avatar.png', size_hint=(None, None), size=(50, 50))
+                    clickable_box.add_widget(image)
+
+                    box = BoxLayout(orientation='vertical', spacing=5)
+                    # Pastikan nilai default jika 'name' atau 'email' hilang
+                    name_label = Label(text=user_data.get('name', 'No Name'), font_size='18sp', bold=True, size_hint_y=None, height=30, color=(0, 0, 0, 1))
+                    email_label = Label(text=user_data.get('email', 'No Email'), font_size='14sp', size_hint_y=None, height=30, color=(0, 0, 0, 1))
+                    box.add_widget(name_label)
+                    box.add_widget(email_label)
+                    clickable_box.add_widget(box)
+
+                    self.ids.accounts_box.add_widget(clickable_box)
+            else:
+                print("No users found.")  # Debug statement jika tidak ada pengguna yang ditemukan
+        else:
+            print("User not found in login screen.") 
 
 class HomeApp(Screen):
+    pass
+
+class LoginSecondScreen(Screen):
     pass
 
 class AccountApp(App):
